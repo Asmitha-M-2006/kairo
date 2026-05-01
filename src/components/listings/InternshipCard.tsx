@@ -1,7 +1,20 @@
 'use client';
 
 import React from 'react';
-import { MapPin, Clock, IndianRupee, Calendar, ExternalLink } from 'lucide-react';
+import {
+  MapPin,
+  Clock,
+  IndianRupee,
+  Calendar,
+  ExternalLink,
+  Monitor,
+  Server,
+  Layers,
+  Code,
+  Brain,
+  PenTool,
+  Briefcase,
+} from 'lucide-react';
 import type { Internship } from '@/lib/internshipData';
 
 interface InternshipCardProps {
@@ -35,8 +48,52 @@ function getTimeAgo(dateStr: string): string {
   return `${diffDays}d ago`;
 }
 
+function getRoleIcon(title: string) {
+  const normalizedTitle = title.toLowerCase();
+
+  if (
+    normalizedTitle.includes('frontend') ||
+    normalizedTitle.includes('front end') ||
+    normalizedTitle.includes('html') ||
+    normalizedTitle.includes('css') ||
+    normalizedTitle.includes('web')
+  ) {
+    return Monitor;
+  }
+
+  if (normalizedTitle.includes('backend') || normalizedTitle.includes('server')) {
+    return Server;
+  }
+
+  if (normalizedTitle.includes('full stack')) {
+    return Layers;
+  }
+
+  if (normalizedTitle.includes('python')) {
+    return Code;
+  }
+
+  if (
+    normalizedTitle.includes('ai') ||
+    normalizedTitle.includes('ml') ||
+    normalizedTitle.includes('machine learning')
+  ) {
+    return Brain;
+  }
+
+  if (
+    normalizedTitle.includes('design') ||
+    normalizedTitle.includes('ui') ||
+    normalizedTitle.includes('ux')
+  ) {
+    return PenTool;
+  }
+
+  return Briefcase;
+}
+
 export default function InternshipCard({ internship }: InternshipCardProps) {
-  const companyInitial = internship.company ? internship.company.charAt(0).toUpperCase() : '?';
+  const RoleIcon = getRoleIcon(internship.title);
   const displaySkills = internship.skills.slice(0, 2);
 
   return (
@@ -47,8 +104,10 @@ export default function InternshipCard({ internship }: InternshipCardProps) {
       {/* Top Section: Company Logo/Initial and Name */}
       <div className="flex items-start justify-between mb-8 relative z-10">
         <div className="flex items-center gap-5">
-          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-[18px] sm:rounded-[20px] bg-white flex items-center justify-center text-xl sm:text-2xl font-black text-newton-blue-500 border-2 border-gray-50 shadow-sm group-hover:border-newton-blue-100 group-hover:shadow-md transition-all duration-300">
-            {companyInitial}
+          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-[18px] sm:rounded-[20px] bg-white flex items-center justify-center border-2 border-gray-50 shadow-sm group-hover:border-newton-blue-100 group-hover:shadow-md transition-all duration-300 overflow-hidden">
+            <div className="w-full h-full rounded-[16px] sm:rounded-[18px] bg-newton-blue-50 text-newton-blue-600 flex items-center justify-center">
+              <RoleIcon size={26} strokeWidth={2} className="sm:w-7 sm:h-7" />
+            </div>
           </div>
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
