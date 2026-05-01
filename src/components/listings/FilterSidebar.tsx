@@ -192,7 +192,7 @@ export default function FilterSidebar({
                     : 'bg-white text-gray-400 border-gray-100 hover:border-gray-200'
                     }`}
                 >
-                  {d.label.toUpperCase()}
+                  {d.label}
                 </button>
               );
             })}

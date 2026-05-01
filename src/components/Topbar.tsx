@@ -11,7 +11,7 @@ const navLinks = [
   { label: 'FLASHCARDS', href: '#' },
   { label: 'ASSIGNMENTS', href: '#' },
   { label: 'EXPERIENCES', href: '#' },
-  { label: 'Resources', href: '#' },
+  { label: 'RESOURCES', href: '#' },
 ];
 
 export default function Topbar() {

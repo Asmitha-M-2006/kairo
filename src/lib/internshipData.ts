@@ -394,7 +394,8 @@ export const LOCATIONS: string[] = [
 
 export const DURATIONS: { value: string; label: string }[] = [
   { value: 'all', label: 'All Durations' },
-  { value: '1-2', label: '1-2 Months' },
-  { value: '3-4', label: '3-4 Months' },
-  { value: '6', label: '6+ Months' },
+  { value: '1-2', label: '1 – 2 Months' },
+  { value: '3-4', label: '3 – 4 Months' },
+  { value: '5-6', label: '5 – 6 Months' },
+  { value: '6+', label: '6+ Months' },
 ];

@@ -73,8 +73,10 @@ function filterInternships(internships: Internship[], filters: FilterState): Int
         if (months < 1 || months > 2) return false;
       } else if (filters.duration === '3-4') {
         if (months < 3 || months > 4) return false;
-      } else if (filters.duration === '6' && months < 6) {
-        return false;
+      } else if (filters.duration === '5-6') {
+        if (months < 5 || months > 6) return false;
+      } else if (filters.duration === '6+') {
+        if (months < 6) return false;
       }
     }
 
