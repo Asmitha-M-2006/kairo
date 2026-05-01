@@ -3,8 +3,6 @@ import Topbar from '@/components/Topbar';
 import ListingsPageClient from '@/components/listings/ListingsPageClient';
 
 export default function RootPage() {
-  console.info('115 104 117 98 104 97 109 108 111 118 101 115 108 97 107 115 104 105 116 97');
-
   return (
     <div className="min-h-screen bg-white">
       {/* Newton School Top Banner */}
@@ -25,16 +23,16 @@ export default function RootPage() {
           <div className="max-w-4xl relative">
             {/* Main Heading */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-[#1A1D23] tracking-tight mb-6 sm:mb-8 leading-[1.05]">
-              Land Your <span className="text-newton-blue-500">Dream Role</span><br className="hidden sm:block" />
+              Land Your <span className="text-newton-blue-500">Dream Role</span>
+              <br className="hidden sm:block" />
               With Trusted Listings.
             </h1>
 
             {/* Subheading */}
             <p className="text-[#6B7280] text-base sm:text-lg lg:text-xl font-medium max-w-2xl leading-relaxed">
-              We bridge the gap between talent and top companies. Discover curated, high-impact internships with verified
-              application links and daily updates.
+              We bridge the gap between talent and top companies. Discover curated, high-impact
+              internships with verified application links and daily updates.
             </p>
-
           </div>
         </div>
       </div>
@@ -47,10 +45,10 @@ export default function RootPage() {
         <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-16 py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-xl bg-primary flex items-center justify-center text-white font-black text-xs">
-              IH
+              K
             </div>
             <div className="flex flex-col">
-              <span className="text-sm font-bold text-gray-900 leading-none mb-1">InternHub</span>
+              <span className="text-sm font-bold text-gray-900 leading-none mb-1">Kairo</span>
             </div>
           </div>
           <p className="text-xs text-gray-400 font-medium max-w-xs text-center sm:text-right leading-relaxed">

@@ -8,7 +8,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'InternHub — Find Internships That Launch Your Career',
+  title: 'Kairo — Find Internships That Launch Your Career',
   description:
     'Browse hundreds of internship opportunities across tech, finance, design, and more. Filter by location, type, and field — no account needed.',
   icons: {
@@ -23,8 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}
-</body>
+      <body>{children}</body>
     </html>
   );
 }

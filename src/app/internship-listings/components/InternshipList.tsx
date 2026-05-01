@@ -8,12 +8,16 @@ interface InternshipListProps {
   internships: Internship[];
   isLoading: boolean;
   onResetFilters: () => void;
+  bookmarkedIds: Set<string>;
+  onToggleBookmark: (internshipId: string) => void;
 }
 
 export default function InternshipList({
   internships,
   isLoading,
   onResetFilters,
+  bookmarkedIds,
+  onToggleBookmark,
 }: InternshipListProps) {
   if (isLoading) {
     return (
@@ -38,7 +42,12 @@ export default function InternshipList({
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 gap-4 animate-fade-in">
       {internships.map((internship) => (
-        <InternshipCard key={internship.id} internship={internship} />
+        <InternshipCard
+          key={internship.id}
+          internship={internship}
+          isBookmarked={bookmarkedIds.has(internship.id)}
+          onToggleBookmark={onToggleBookmark}
+        />
       ))}
     </div>
   );

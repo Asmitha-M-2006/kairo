@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import AppLogo from '@/components/ui/AppLogo';
 import {
@@ -17,12 +17,6 @@ import {
 } from 'lucide-react';
 
 export default function LandingPage() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
     <div className="min-h-screen bg-[#f8f7f4] flex flex-col">
       {/* Nav */}
@@ -31,7 +25,7 @@ export default function LandingPage() {
           <div className="flex items-center gap-2.5">
             <AppLogo size={34} />
             <div className="flex flex-col leading-none">
-              <span className="font-bold text-[17px] tracking-tight text-foreground">InternHub</span>
+              <span className="font-bold text-[17px] tracking-tight text-foreground">Kairo</span>
               <span className="text-[10px] text-muted-foreground font-medium hidden sm:block">
                 powered by Newton School of Technology
               </span>
@@ -81,7 +75,8 @@ export default function LandingPage() {
               </h1>
 
               <p className="mt-5 text-lg text-muted-foreground max-w-lg leading-relaxed">
-                Browse verified internships across tech, design, marketing, and more — filtered by location and skills. No account, no friction.
+                Browse verified internships across tech, design, marketing, and more — filtered by
+                location and skills. No account, no friction.
               </p>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
@@ -101,29 +96,58 @@ export default function LandingPage() {
                 {/* Main card */}
                 <div className="bg-white rounded-2xl border border-border shadow-xl p-6 space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Latest Openings</span>
+                    <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                      Latest Openings
+                    </span>
                     <span className="inline-flex items-center gap-1 text-xs text-green-600 font-medium">
                       <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
                       Live
                     </span>
                   </div>
                   {[
-                    { role: 'Full Stack Development', company: 'Finixia Dedecons', location: 'Work From Home', stipend: '₹3K–4K/mo', tag: 'bg-blue-50 text-blue-700' },
-                    { role: 'UI/UX Design', company: 'PivotRoots', location: 'Mumbai', stipend: '₹8K–10K/mo', tag: 'bg-violet-50 text-violet-700' },
-                    { role: 'Visual Design', company: 'Shiplock Technologies', location: 'Bangalore', stipend: '₹20K–25K/mo', tag: 'bg-amber-50 text-amber-700' },
+                    {
+                      role: 'Full Stack Development',
+                      company: 'Finixia Dedecons',
+                      location: 'Work From Home',
+                      stipend: '₹3K–4K/mo',
+                      tag: 'bg-blue-50 text-blue-700',
+                    },
+                    {
+                      role: 'UI/UX Design',
+                      company: 'PivotRoots',
+                      location: 'Mumbai',
+                      stipend: '₹8K–10K/mo',
+                      tag: 'bg-violet-50 text-violet-700',
+                    },
+                    {
+                      role: 'Visual Design',
+                      company: 'Shiplock Technologies',
+                      location: 'Bangalore',
+                      stipend: '₹20K–25K/mo',
+                      tag: 'bg-amber-50 text-amber-700',
+                    },
                   ]?.map((item, i) => (
-                    <div key={i} className="flex items-start gap-3 p-3 rounded-xl bg-[#f8f7f4] hover:bg-primary/5 transition-colors cursor-default">
+                    <div
+                      key={i}
+                      className="flex items-start gap-3 p-3 rounded-xl bg-[#f8f7f4] hover:bg-primary/5 transition-colors cursor-default"
+                    >
                       <div className="w-9 h-9 rounded-lg bg-white border border-border flex items-center justify-center flex-shrink-0 shadow-sm">
                         <Briefcase size={15} className="text-primary" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-semibold text-foreground truncate">{item?.role}</p>
+                        <p className="text-sm font-semibold text-foreground truncate">
+                          {item?.role}
+                        </p>
                         <p className="text-xs text-muted-foreground">{item?.company}</p>
                         <div className="flex items-center gap-2 mt-1">
                           <span className="text-xs text-muted-foreground flex items-center gap-0.5">
                             <MapPin size={10} /> {item?.location}
                           </span>
-                          <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-full ${item?.tag}`}>{item?.stipend}</span>
+                          <span
+                            className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-full ${item?.tag}`}
+                          >
+                            {item?.stipend}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -166,7 +190,8 @@ export default function LandingPage() {
             <div>
               <h3 className="text-lg font-bold text-foreground">Smart filters, instant results</h3>
               <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
-                Filter by location (work from home or city) and required skills like React, Figma, or Python. Results update instantly — no page reloads.
+                Filter by location (work from home or city) and required skills like React, Figma,
+                or Python. Results update instantly — no page reloads.
               </p>
               <Link
                 href="/internship-listings"
@@ -185,7 +210,8 @@ export default function LandingPage() {
             <div>
               <h3 className="text-base font-bold text-foreground mt-4">Work From Home & on-site</h3>
               <p className="mt-1 text-sm text-muted-foreground">
-                Work from home or in-office across multiple cities — filter by what works for your schedule.
+                Work from home or in-office across multiple cities — filter by what works for your
+                schedule.
               </p>
             </div>
           </div>
@@ -208,7 +234,8 @@ export default function LandingPage() {
             </div>
             <h3 className="mt-4 text-base font-bold text-foreground">Skill-matched roles</h3>
             <p className="mt-1 text-sm text-muted-foreground">
-              Each listing shows required skills upfront — find roles that match what you already know.
+              Each listing shows required skills upfront — find roles that match what you already
+              know.
             </p>
           </div>
 
@@ -243,7 +270,8 @@ export default function LandingPage() {
               Ready to land your first internship?
             </h2>
             <p className="mt-3 text-white/75 text-sm max-w-sm mx-auto leading-relaxed">
-              Hundreds of verified listings are live right now. It takes under a minute to find one that fits.
+              Hundreds of verified listings are live right now. It takes under a minute to find one
+              that fits.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
@@ -271,12 +299,15 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-7 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
             <AppLogo size={20} />
-            <span className="font-semibold text-foreground">InternHub</span>
+            <span className="font-semibold text-foreground">Kairo</span>
             <span className="text-border">·</span>
             <span>powered by Newton School of Technology</span>
           </div>
           <div className="flex items-center gap-4">
-            <Link href="/internship-listings" className="hover:text-foreground transition-colors font-medium">
+            <Link
+              href="/internship-listings"
+              className="hover:text-foreground transition-colors font-medium"
+            >
               Internship Listings →
             </Link>
             <span className="text-border">·</span>

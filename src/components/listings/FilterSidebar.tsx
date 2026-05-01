@@ -28,6 +28,8 @@ interface FilterSidebarProps {
   availableSkills: string[];
 }
 
+const LOCATION_OPTIONS = ['All', 'Remote', 'Bangalore', 'Hyderabad', 'Delhi', 'Mumbai', 'Pune'] as const;
+
 const POSTED_OPTIONS: { label: string; value: PostedFilter }[] = [
   { label: 'ALL TIME', value: 'all' },
   { label: 'LAST 24H', value: '24h' },
@@ -38,68 +40,18 @@ const POSTED_OPTIONS: { label: string; value: PostedFilter }[] = [
 export default function FilterSidebar({
   filters,
   onFilterChange,
-  availableLocations,
-  availableSkills,
+  availableLocations: _availableLocations,
+  availableSkills: _availableSkills,
 }: FilterSidebarProps) {
-  const toggleSkill = (skill: string) => {
-    const current = filters.skills;
-    const updated = current.includes(skill)
-      ? current.filter((s) => s !== skill)
-      : [...current, skill];
-    onFilterChange({ ...filters, skills: updated });
-  };
-
   const toggleLocation = (loc: string) => {
-    if (filters.location === loc) {
+    const nextLocation = loc === 'All' ? 'All Locations' : loc;
+
+    if (filters.location === nextLocation) {
       onFilterChange({ ...filters, location: 'All Locations' });
     } else {
-      onFilterChange({ ...filters, location: loc });
+      onFilterChange({ ...filters, location: nextLocation });
     }
   };
-
-  // const topLocations = availableLocations
-  //   .filter(l => l !== 'All Locations' && l.toLowerCase() !== 'remote' && l.toLowerCase() !== 'work from home' )
-  //   .slice(0, 5);
-  const topLocations = availableLocations
-    .filter(
-      (l) =>
-        l !== 'All Locations' &&
-        !l.toLowerCase().includes('remote') &&
-        !l.toLowerCase().includes('work from home') &&
-        !l.toLowerCase().includes('hybrid') &&
-        !l.toLowerCase().includes('bikaner') &&
-        !l.toLowerCase().includes('ghaziabad') &&
-        !l.toLowerCase().includes('hyderabad') &&
-        !l.toLowerCase().includes('indore') &&
-        !l.toLowerCase().includes('jaipur') &&
-        !l.toLowerCase().includes('noida') &&
-        !l.toLowerCase().includes('kolkata') &&
-        !l.toLowerCase().includes('lucknow') &&
-        !l.toLowerCase().includes('mohali') &&
-        !l.toLowerCase().includes('dehradun') &&
-        !l.toLowerCase().includes('nagpur') &&
-        !l.toLowerCase().includes('mumbai') &&
-        !l.toLowerCase().includes('pimpri-chinchwad') &&
-        !l.toLowerCase().includes('rajkot') &&
-        !l.toLowerCase().includes('thane') &&
-        !l.toLowerCase().includes('virar') &&
-        !l.toLowerCase().includes('dehradun') &&
-        !l.toLowerCase().includes('chennai') &&
-        !l.toLowerCase().includes('ahmedabad')
-    )
-    .slice(0, 5);
-  const topSkills = availableSkills
-    .filter(
-      (s) =>
-        s.toLowerCase().includes('development') ||
-        s.toLowerCase().includes('mern') ||
-        s.toLowerCase().includes('node') ||
-        s.toLowerCase().includes('html') ||
-        s.toLowerCase().includes('python') ||
-        s.toLowerCase().includes('css')
-    )
-    .slice(0, 6);
-  const displaySkills = topSkills.length > 0 ? topSkills : availableSkills.slice(0, 6);
 
   return (
     <div className="w-full bg-white rounded-2xl sm:rounded-[40px] border border-gray-100 shadow-[0_20px_60px_rgba(0,0,0,0.03)] p-4 sm:p-6 lg:p-10 mb-8 sm:mb-12 lg:mb-16">
@@ -123,7 +75,6 @@ export default function FilterSidebar({
         </div>
         {(filters.keyword ||
           filters.location !== 'All Locations' ||
-          filters.skills.length > 0 ||
           filters.duration !== 'all' ||
           filters.posted !== 'all' ||
           filters.titleCategory !== '') && (
@@ -159,69 +110,20 @@ export default function FilterSidebar({
             </span>
           </div>
           <div className="flex flex-wrap gap-3">
-            <button
-              onClick={() => toggleLocation('All Locations')}
-              className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-[10px] sm:text-[11px] font-black tracking-wider transition-all border ${filters.location === 'All Locations'
-                ? 'bg-newton-blue-500 text-white border-newton-blue-500 shadow-lg shadow-newton-blue-200'
-                : 'bg-white text-gray-400 border-gray-100 hover:border-gray-200'
-                }`}
-            >
-              ALL
-            </button>
-            <button
-              onClick={() => toggleLocation('Work From Home')}
-              className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-[10px] sm:text-[11px] font-black tracking-wider transition-all border ${filters.location === 'Work From Home'
-                ? 'bg-newton-blue-500 text-white border-newton-blue-500 shadow-lg shadow-newton-blue-200'
-                : 'bg-white text-gray-400 border-gray-100 hover:border-gray-200'
-                }`}
-            >
-              WORK FROM HOME
-            </button>
-            {topLocations.map((loc) => (
-              <button
-                key={loc}
-                onClick={() => toggleLocation(loc)}
-                className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-[10px] sm:text-[11px] font-black tracking-wider transition-all border ${filters.location === loc
-                  ? 'bg-newton-blue-500 text-white border-newton-blue-500 shadow-lg shadow-newton-blue-200'
-                  : 'bg-white text-gray-400 border-gray-100 hover:border-gray-200'
-                  }`}
-              >
-                {loc.toUpperCase()}
-              </button>
-            ))}
-          </div>
-        </div>
+            {LOCATION_OPTIONS.map((loc) => {
+              const isSelected =
+                loc === 'All' ? filters.location === 'All Locations' : filters.location === loc;
 
-        {/* Expertise Filter */}
-        <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-8">
-          <div className="flex items-center gap-2 w-auto sm:w-32 pt-0 sm:pt-2 shrink-0">
-            <Briefcase size={16} className="text-newton-orange-500" />
-            <span className="text-[11px] font-black tracking-[0.15em] text-gray-400 uppercase">
-              Expertise
-            </span>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <button
-              onClick={() => onFilterChange({ ...filters, skills: [] })}
-              className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-[10px] sm:text-[11px] font-black tracking-wider transition-all border ${filters.skills.length === 0
-                ? 'bg-newton-blue-500 text-white border-newton-blue-500 shadow-lg shadow-newton-blue-200'
-                : 'bg-white text-gray-400 border-gray-100 hover:border-gray-200'
-                }`}
-            >
-              ALL
-            </button>
-            {displaySkills.map((skill) => {
-              const isSelected = filters.skills.includes(skill);
               return (
                 <button
-                  key={skill}
-                  onClick={() => toggleSkill(skill)}
+                  key={loc}
+                  onClick={() => toggleLocation(loc)}
                   className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-[10px] sm:text-[11px] font-black tracking-wider transition-all border ${isSelected
                     ? 'bg-newton-blue-500 text-white border-newton-blue-500 shadow-lg shadow-newton-blue-200'
                     : 'bg-white text-gray-400 border-gray-100 hover:border-gray-200'
                     }`}
                 >
-                  {skill.toUpperCase()}
+                  {loc}
                 </button>
               );
             })}

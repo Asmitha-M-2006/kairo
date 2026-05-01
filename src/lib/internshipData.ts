@@ -1,10 +1,17 @@
 // BACKEND INTEGRATION POINT:
 // Replace this mock data with a real API call, e.g.:
-//   const res = await fetch('https://api.internhub.io/v1/internships', { next: { revalidate: 300 } });
+//   const res = await fetch('https://api.kairo.app/v1/internships', { next: { revalidate: 300 } });
 //   return res.json();
 
 export type InternshipCategory =
-  | 'tech' | 'finance' | 'design' | 'marketing' | 'operations' | 'data' | 'legal' | 'hr';
+  | 'tech'
+  | 'finance'
+  | 'design'
+  | 'marketing'
+  | 'operations'
+  | 'data'
+  | 'legal'
+  | 'hr';
 
 export type InternshipType = 'full-time' | 'part-time' | 'work from home' | 'hybrid';
 
@@ -302,7 +309,7 @@ export const MOCK_INTERNSHIPS: Internship[] = [
     postedDate: '2026-04-09',
     deadline: '2026-04-30',
     description:
-      'Support HubSpot\'s recruiting and onboarding operations. Help coordinate intern programs, build HR dashboards, and improve employee experience workflows.',
+      "Support HubSpot's recruiting and onboarding operations. Help coordinate intern programs, build HR dashboards, and improve employee experience workflows.",
     skills: ['HRIS', 'Recruiting Coordination', 'Google Workspace', 'Data Entry'],
     applyUrl: 'https://hubspot.com/careers',
     status: 'urgent',
@@ -344,7 +351,7 @@ export const MOCK_INTERNSHIPS: Internship[] = [
     postedDate: '2026-04-11',
     deadline: '2026-05-08',
     description:
-      'Support Palantir\'s legal team on contracts, IP, and regulatory compliance matters. Work on cutting-edge technology law issues in AI and data privacy.',
+      "Support Palantir's legal team on contracts, IP, and regulatory compliance matters. Work on cutting-edge technology law issues in AI and data privacy.",
     skills: ['Contract Review', 'IP Law', 'GDPR', 'Legal Research', 'Drafting'],
     applyUrl: 'https://palantir.com/careers',
     status: 'open',
