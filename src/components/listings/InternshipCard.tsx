@@ -97,14 +97,14 @@ export default function InternshipCard({ internship }: InternshipCardProps) {
   const displaySkills = internship.skills.slice(0, 2);
 
   return (
-    <article className="bg-white rounded-[32px] border border-gray-100 p-5 sm:p-6 lg:p-8 hover:shadow-[0_30px_60px_rgba(0,102,255,0.06)] transition-all duration-500 group flex flex-col h-full relative overflow-hidden">
+    <article className="bg-white rounded-[32px] border border-gray-100 shadow-[0_1px_2px_rgba(17,24,39,0.03)] p-5 sm:p-6 lg:p-8 hover:shadow-[0_0_0_1px_rgba(17,24,39,0.05),0_18px_38px_rgba(0,102,255,0.05)] transition-all duration-200 ease-in-out group flex flex-col h-full relative overflow-hidden">
       {/* Decorative Brand Accent */}
       <div className="absolute top-0 right-0 w-32 h-32 bg-newton-blue-500/5 rounded-bl-full -mr-16 -mt-16 transition-transform duration-500 group-hover:scale-110" />
 
       {/* Top Section: Company Logo/Initial and Name */}
       <div className="flex items-start justify-between mb-8 relative z-10">
         <div className="flex items-center gap-5">
-          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-[18px] sm:rounded-[20px] bg-white flex items-center justify-center border-2 border-gray-50 shadow-sm group-hover:border-newton-blue-100 group-hover:shadow-md transition-all duration-300 overflow-hidden">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-[18px] sm:rounded-[20px] bg-white flex items-center justify-center border-2 border-gray-50 shadow-sm group-hover:shadow-[0_8px_18px_rgba(0,102,255,0.08)] transition-all duration-300 overflow-hidden">
             <div className="w-full h-full rounded-[16px] sm:rounded-[18px] bg-newton-blue-50 text-newton-blue-600 flex items-center justify-center">
               <RoleIcon size={26} strokeWidth={2} className="sm:w-7 sm:h-7" />
             </div>

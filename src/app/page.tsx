@@ -19,17 +19,17 @@ export default function RootPage() {
       <Topbar />
       {/* Hero section - Matching the provided image */}
       <div className="bg-white">
-        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-16 pt-10 sm:pt-16 lg:pt-20 pb-8 sm:pb-12">
-          <div className="max-w-4xl relative">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-12 lg:pt-16 pb-6 sm:pb-8 lg:pb-10">
+          <div className="max-w-[880px] relative">
             {/* Main Heading */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-[#1A1D23] tracking-tight mb-6 sm:mb-8 leading-[1.05]">
+            <h1 className="text-[2rem] sm:text-[2.5rem] lg:text-[3rem] font-black text-[#1A1D23] tracking-[-0.02em] mb-5 leading-[1.1]">
               Land Your <span className="text-newton-blue-500">Dream Role</span>
               <br className="hidden sm:block" />
               With Trusted Listings.
             </h1>
 
             {/* Subheading */}
-            <p className="text-[#6B7280] text-base sm:text-lg lg:text-xl font-medium max-w-2xl leading-relaxed">
+            <p className="text-[1rem] sm:text-[1.125rem] text-[#6B7280] font-medium max-w-[600px] leading-[1.6]">
               We bridge the gap between talent and top companies. Discover curated, high-impact
               internships with verified application links and daily updates.
             </p>
@@ -37,7 +37,7 @@ export default function RootPage() {
         </div>
       </div>
       {/* Main content area */}
-      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-16 py-8 xl:py-12">
+      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-16 pt-4 pb-8 xl:pb-12">
         <ListingsPageClient />
       </div>
       {/* Footer */}

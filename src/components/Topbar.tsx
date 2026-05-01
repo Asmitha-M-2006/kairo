@@ -18,10 +18,10 @@ export default function Topbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-black/5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-16">
         <div className="min-h-[72px] sm:min-h-[80px] lg:min-h-[88px] flex items-center justify-between gap-4 py-3">
-          <Link href="/" className="flex min-w-0 items-center gap-3.5 sm:gap-4.5">
+          <Link href="/" className="flex min-w-0 items-center gap-2">
             <Image
               src="/assets/images/logo.png"
               alt="Kairo logo"
@@ -31,10 +31,10 @@ export default function Topbar() {
               className="h-12 w-12 sm:h-[52px] sm:w-[52px] lg:h-16 lg:w-16 object-contain flex-shrink-0 self-center"
             />
             <div className="min-w-0 flex flex-col justify-center leading-none">
-              <span className="text-[17px] sm:text-[20px] lg:text-[22px] font-extrabold tracking-[-0.055em] text-[#000000] whitespace-nowrap antialiased">
+              <span className="text-[20px] sm:text-[22px] lg:text-[25px] font-extrabold tracking-[-0.02em] text-[#000000] whitespace-nowrap antialiased">
                 KAIRO
               </span>
-              <span className="mt-1 text-[8px] sm:text-[9px] lg:text-[10px] font-medium tracking-[0.16em] text-gray-500 whitespace-nowrap">
+              <span className="mt-1 text-[8px] sm:text-[9px] lg:text-[10px] font-medium tracking-[0.1em] text-gray-500 opacity-70 whitespace-nowrap">
                 POWERED BY NST SVYASA
               </span>
             </div>

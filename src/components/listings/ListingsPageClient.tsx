@@ -199,7 +199,7 @@ export default function ListingsPageClient() {
     <div className="relative">
       <Toaster position="top-center" richColors />
 
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-12">
         <FilterSidebar
           filters={filters}
           onFilterChange={handleFilterChange}
