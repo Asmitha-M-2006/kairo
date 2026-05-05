@@ -17,6 +17,11 @@ import {
 } from 'lucide-react';
 
 export default function LandingPage() {
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#f8f7f4] flex flex-col">
       {/* Nav */}
@@ -298,7 +303,7 @@ export default function LandingPage() {
       <footer className="border-t border-border mt-auto bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-7 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
-            <AppLogo size={20} />
+            <AppLogo size={32} />
             <span className="font-semibold text-foreground">Kairo</span>
             <span className="text-border">·</span>
             <span>powered by Newton School of Technology</span>

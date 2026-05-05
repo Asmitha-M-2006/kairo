@@ -28,7 +28,15 @@ interface FilterSidebarProps {
   availableSkills: string[];
 }
 
-const LOCATION_OPTIONS = ['All', 'Remote', 'Bangalore', 'Hyderabad', 'Delhi', 'Mumbai', 'Pune'] as const;
+const LOCATION_OPTIONS = [
+  'All',
+  'Remote',
+  'Bangalore',
+  'Hyderabad',
+  'Delhi',
+  'Mumbai',
+  'Pune',
+] as const;
 
 const POSTED_OPTIONS: { label: string; value: PostedFilter }[] = [
   { label: 'ALL TIME', value: 'all' },
@@ -54,17 +62,15 @@ export default function FilterSidebar({
   };
 
   return (
-    <div className="w-full max-w-[1100px] mx-auto box-border">
-      <div className="flex justify-end mb-4">
-        <span className="inline-flex items-center rounded-xl border border-black/[0.06] bg-[#FAF8F5] px-[14px] py-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-[#5A544F] shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+    <div className="w-full mt-10 box-border">
+      <div className="relative w-full box-border rounded-2xl border border-gray-200/60 bg-white p-6 shadow-sm md:p-8">
+        <span className="absolute right-6 top-6 rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-500">
           Updated Daily
         </span>
-      </div>
 
-      <div className="relative w-full box-border rounded-[24px] border border-black/[0.03] bg-white p-5 sm:p-6 lg:p-7 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
-        <div className="mb-[18px] flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
-          <div className="relative flex-1">
-            <div className="absolute left-[18px] top-1/2 -translate-y-1/2 text-gray-400">
+        <div className="flex flex-col space-y-6 pt-8 sm:pt-0">
+          <div className="flex w-full items-center gap-3 rounded-xl border border-gray-200 px-4 py-3">
+            <div className="text-gray-400">
               <Search size={18} />
             </div>
             <input
@@ -72,14 +78,13 @@ export default function FilterSidebar({
               placeholder="Search by role, company or keywords..."
               value={filters.keyword}
               onChange={(e) => onFilterChange({ ...filters, keyword: e.target.value })}
-              className="h-12 w-full rounded-2xl border border-[#E2DFD8] bg-white pl-[52px] pr-4 text-base text-gray-800 placeholder:text-[#9CA3AF] shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all focus:border-newton-blue-500 focus:outline-none focus:ring-4 focus:ring-newton-blue-500/10 sm:pr-5"
+              className="h-12 w-full bg-transparent text-base text-gray-800 placeholder:text-[#9CA3AF] focus:outline-none"
             />
-          </div>
-          {(filters.keyword ||
-            filters.location !== 'All Locations' ||
-            filters.duration !== 'all' ||
-            filters.posted !== 'all' ||
-            filters.titleCategory !== '') && (
+            {(filters.keyword ||
+              filters.location !== 'All Locations' ||
+              filters.duration !== 'all' ||
+              filters.posted !== 'all' ||
+              filters.titleCategory !== '') && (
               <button
                 onClick={() =>
                   onFilterChange({
@@ -95,21 +100,18 @@ export default function FilterSidebar({
                     titleCategory: '',
                   })
                 }
-                className="w-full px-4 py-3 text-center text-xs font-black uppercase tracking-widest text-gray-400 transition-colors hover:text-newton-blue-500 sm:ml-6 sm:w-auto sm:px-8 sm:py-6 sm:text-sm"
+                className="shrink-0 px-4 py-2 text-xs font-black uppercase tracking-widest text-gray-400 transition-colors hover:text-newton-blue-500"
               >
                 Reset Filters
               </button>
             )}
-        </div>
+          </div>
 
-        <div className="space-y-3 p-4 sm:p-0">
           {/* Location Filter */}
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-            <div className="flex w-auto shrink-0 items-center gap-2 leading-[1.2] sm:w-[140px]">
+          <div className="flex flex-col gap-3 md:flex-row md:items-start md:gap-6">
+            <div className="flex w-32 min-w-[120px] items-center gap-2 text-sm font-medium uppercase tracking-wide text-gray-500">
               <MapPin size={16} className="text-newton-blue-500" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.09em] leading-[1.2] text-gray-500">
-                Location
-              </span>
+              <span>Location</span>
             </div>
             <div className="flex flex-wrap gap-3">
               {LOCATION_OPTIONS.map((loc) => {
@@ -118,12 +120,12 @@ export default function FilterSidebar({
 
                 return (
                   <button
-                  key={loc}
-                  onClick={() => toggleLocation(loc)}
-                  className={`rounded-full border px-[14px] py-1.5 text-[10px] font-black tracking-wider transition-all sm:text-[11px] ${
+                    key={loc}
+                    onClick={() => toggleLocation(loc)}
+                    className={`rounded-full border px-4 py-1.5 text-sm transition-all ${
                       isSelected
-                        ? 'border-newton-blue-500 bg-newton-blue-500 text-white shadow-lg shadow-newton-blue-200'
-                        : 'border-black/15 bg-transparent text-gray-700 hover:border-gray-300'
+                        ? 'border-transparent bg-blue-600 text-white shadow-sm'
+                        : 'border-gray-200 bg-white text-gray-700 hover:bg-gray-50'
                     }`}
                   >
                     {loc}
@@ -134,20 +136,18 @@ export default function FilterSidebar({
           </div>
 
           {/* Title Category Filter */}
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-            <div className="flex w-auto shrink-0 items-center gap-2 leading-[1.2] sm:w-[140px]">
+          <div className="flex flex-col gap-3 md:flex-row md:items-start md:gap-6">
+            <div className="flex w-32 min-w-[120px] items-center gap-2 text-sm font-medium uppercase tracking-wide text-gray-500">
               <Briefcase size={16} className="text-newton-orange-500" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.09em] leading-[1.2] text-gray-500">
-                Job Titles
-              </span>
+              <span>Job Titles</span>
             </div>
             <div className="flex flex-wrap gap-3">
               <button
                 onClick={() => onFilterChange({ ...filters, titleCategory: '' })}
-                className={`rounded-full border px-[14px] py-1.5 text-[10px] font-black tracking-wider transition-all sm:text-[11px] ${
+                className={`rounded-full border px-4 py-1.5 text-sm transition-all ${
                   filters.titleCategory === ''
-                    ? 'border-newton-blue-500 bg-newton-blue-500 text-white shadow-lg shadow-newton-blue-200'
-                    : 'border-black/15 bg-transparent text-gray-700 hover:border-gray-300'
+                    ? 'border-transparent bg-blue-600 text-white shadow-sm'
+                    : 'border-gray-200 bg-white text-gray-700 hover:bg-gray-50'
                 }`}
               >
                 ALL
@@ -165,10 +165,10 @@ export default function FilterSidebar({
                 <button
                   key={title}
                   onClick={() => onFilterChange({ ...filters, titleCategory: title })}
-                  className={`rounded-full border px-[14px] py-1.5 text-[10px] font-black tracking-wider transition-all sm:text-[11px] ${
+                  className={`rounded-full border px-4 py-1.5 text-sm transition-all ${
                     filters.titleCategory === title
-                      ? 'border-newton-blue-500 bg-newton-blue-500 text-white shadow-lg shadow-newton-blue-200'
-                      : 'border-black/15 bg-transparent text-gray-700 hover:border-gray-300'
+                      ? 'border-transparent bg-blue-600 text-white shadow-sm'
+                      : 'border-gray-200 bg-white text-gray-700 hover:bg-gray-50'
                   }`}
                 >
                   {title.toUpperCase()}
@@ -178,24 +178,22 @@ export default function FilterSidebar({
           </div>
 
           {/* Duration Filter */}
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-            <div className="flex w-auto shrink-0 items-center gap-2 leading-[1.2] sm:w-[140px]">
+          <div className="flex flex-col gap-3 md:flex-row md:items-start md:gap-6">
+            <div className="flex w-32 min-w-[120px] items-center gap-2 text-sm font-medium uppercase tracking-wide text-gray-500">
               <Clock size={16} className="text-newton-yellow-500" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.09em] leading-[1.2] text-gray-500">
-                Duration
-              </span>
+              <span>Duration</span>
             </div>
             <div className="flex flex-wrap gap-3">
               {DURATIONS.map((d) => {
                 const isSelected = filters.duration === d.value;
                 return (
                   <button
-                  key={d.value}
-                  onClick={() => onFilterChange({ ...filters, duration: d.value })}
-                    className={`rounded-full border px-[14px] py-1.5 text-[10px] font-black tracking-wider transition-all sm:text-[11px] ${
+                    key={d.value}
+                    onClick={() => onFilterChange({ ...filters, duration: d.value })}
+                    className={`rounded-full border px-4 py-1.5 text-sm transition-all ${
                       isSelected
-                        ? 'border-newton-blue-500 bg-newton-blue-500 text-white shadow-lg shadow-newton-blue-200'
-                        : 'border-black/15 bg-transparent text-gray-700 hover:border-gray-300'
+                        ? 'border-transparent bg-blue-600 text-white shadow-sm'
+                        : 'border-gray-200 bg-white text-gray-700 hover:bg-gray-50'
                     }`}
                   >
                     {d.label}
@@ -206,24 +204,22 @@ export default function FilterSidebar({
           </div>
 
           {/* Posted Filter */}
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-            <div className="flex w-auto shrink-0 items-center gap-2 leading-[1.2] sm:w-[140px]">
+          <div className="flex flex-col gap-3 md:flex-row md:items-start md:gap-6">
+            <div className="flex w-32 min-w-[120px] items-center gap-2 text-sm font-medium uppercase tracking-wide text-gray-500">
               <Calendar size={16} className="text-newton-blue-500" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.09em] leading-[1.2] text-gray-500">
-                Posted
-              </span>
+              <span>Posted</span>
             </div>
             <div className="flex flex-wrap gap-3">
               {POSTED_OPTIONS.map((opt) => {
                 const isSelected = filters.posted === opt.value;
                 return (
                   <button
-                  key={opt.value}
-                  onClick={() => onFilterChange({ ...filters, posted: opt.value })}
-                    className={`rounded-full border px-[14px] py-1.5 text-[10px] font-black tracking-wider transition-all sm:text-[11px] ${
+                    key={opt.value}
+                    onClick={() => onFilterChange({ ...filters, posted: opt.value })}
+                    className={`rounded-full border px-4 py-1.5 text-sm transition-all ${
                       isSelected
-                        ? 'border-newton-blue-500 bg-newton-blue-500 text-white shadow-lg shadow-newton-blue-200'
-                        : 'border-black/15 bg-transparent text-gray-700 hover:border-gray-300'
+                        ? 'border-transparent bg-blue-600 text-white shadow-sm'
+                        : 'border-gray-200 bg-white text-gray-700 hover:bg-gray-50'
                     }`}
                   >
                     {opt.label}

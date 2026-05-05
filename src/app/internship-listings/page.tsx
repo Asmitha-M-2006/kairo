@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import Topbar from '@/components/Topbar';
 import ListingsPageClient from './components/ListingsPageClient';
 
@@ -34,9 +35,13 @@ export default function InternshipListingsPage() {
       <footer className="bg-white border-t border-gray-100 mt-20">
         <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-16 py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-xl bg-primary flex items-center justify-center text-white font-black text-xs">
-              K
-            </div>
+            <Image
+              src="/assets/images/logo.png"
+              alt="Kairo logo"
+              width={32}
+              height={32}
+              className="h-8 w-auto object-contain"
+            />
             <div className="flex flex-col">
               <span className="text-sm font-bold text-gray-900 leading-none mb-1">Kairo</span>
             </div>
