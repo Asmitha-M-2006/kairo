@@ -8,6 +8,7 @@ interface AppLogoProps {
   src?: string; // Image source (optional)
   iconName?: string; // Icon name when no image
   size?: number; // Size for icon/image
+  alt?: string; // Alt text for the logo image
   className?: string; // Additional classes
   onClick?: () => void; // Click handler
 }
@@ -16,6 +17,7 @@ const AppLogo = memo(function AppLogo({
   src = '/assets/images/logo.png',
   iconName = 'SparklesIcon',
   size = 64,
+  alt = 'Kairo logo',
   className = '',
   onClick,
 }: AppLogoProps) {
@@ -33,7 +35,7 @@ const AppLogo = memo(function AppLogo({
       {src && src.trim() !== '' ? (
         <AppImage
           src={src}
-          alt="Logo" 
+          alt={alt}
           width={size}
           height={size}
           className="flex-shrink-0"

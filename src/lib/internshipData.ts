@@ -61,7 +61,7 @@ export function parseApiPostedDate(value: unknown): Date | null {
     return Number.isNaN(out.getTime()) ? null : out;
   }
 
-  m = s.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{2,4})$/);
+  m = s.match(/^(\d{1,2})[/\\-](\d{1,2})[/\\-](\d{2,4})$/);
   if (m) {
     const day = Number(m[1]);
     const month = Number(m[2]) - 1;
@@ -358,26 +358,6 @@ export const MOCK_INTERNSHIPS: Internship[] = [
     isNew: false,
     openings: 2,
   },
-];
-
-export const CATEGORIES: { value: InternshipCategory | 'all'; label: string }[] = [
-  { value: 'all', label: 'All Fields' },
-  { value: 'tech', label: 'Technology' },
-  { value: 'finance', label: 'Finance' },
-  { value: 'design', label: 'Design' },
-  { value: 'marketing', label: 'Marketing' },
-  { value: 'data', label: 'Data & Analytics' },
-  { value: 'operations', label: 'Operations' },
-  { value: 'legal', label: 'Legal' },
-  { value: 'hr', label: 'Human Resources' },
-];
-
-export const TYPES: { value: InternshipType | 'all'; label: string }[] = [
-  { value: 'all', label: 'All Types' },
-  { value: 'full-time', label: 'Full-time' },
-  { value: 'part-time', label: 'Part-time' },
-  { value: 'work from home', label: 'Work From Home' },
-  { value: 'hybrid', label: 'Hybrid' },
 ];
 
 export const LOCATIONS: string[] = [

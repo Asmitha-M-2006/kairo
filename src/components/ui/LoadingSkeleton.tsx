@@ -2,32 +2,46 @@ import React from 'react';
 
 export function CardSkeleton() {
   return (
-    <div className="bg-white rounded-xl border border-border p-5 animate-pulse">
-      <div className="flex items-start justify-between mb-4">
-        <div className="flex items-center gap-3">
-          <div className="w-11 h-11 rounded-lg bg-muted flex-shrink-0" />
-          <div className="space-y-2">
-            <div className="h-4 w-40 bg-muted rounded" />
-            <div className="h-3 w-24 bg-muted rounded" />
+    <div className="bg-white rounded-2xl border border-border p-6 animate-pulse relative overflow-hidden">
+      {/* Accent bar placeholder */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-muted" />
+
+      {/* Header: logo + title + bookmark */}
+      <div className="flex items-start justify-between gap-4 mb-5">
+        <div className="flex items-center gap-4 min-w-0">
+          <div className="w-14 h-14 rounded-2xl bg-muted flex-shrink-0" />
+          <div className="space-y-2.5 min-w-0">
+            <div className="h-4 w-40 bg-muted rounded-lg" />
+            <div className="h-3.5 w-24 bg-muted rounded-lg" />
           </div>
         </div>
-        <div className="h-6 w-14 bg-muted rounded-full" />
+        <div className="w-9 h-9 rounded-xl bg-muted flex-shrink-0" />
       </div>
-      <div className="h-5 w-3/4 bg-muted rounded mb-3" />
-      <div className="flex gap-2 mb-4">
-        <div className="h-5 w-16 bg-muted rounded-full" />
-        <div className="h-5 w-20 bg-muted rounded-full" />
-        <div className="h-5 w-14 bg-muted rounded-full" />
+
+      {/* Skills pills */}
+      <div className="flex gap-1.5 mb-5">
+        <div className="h-5 w-14 bg-muted rounded-lg" />
+        <div className="h-5 w-[72px] bg-muted rounded-lg" />
+        <div className="h-5 w-12 bg-muted rounded-lg" />
       </div>
-      <div className="grid grid-cols-2 gap-3 mb-4">
-        <div className="h-3 w-28 bg-muted rounded" />
-        <div className="h-3 w-24 bg-muted rounded" />
-        <div className="h-3 w-20 bg-muted rounded" />
-        <div className="h-3 w-28 bg-muted rounded" />
+
+      {/* 2x2 info grid with icon containers */}
+      <div className="grid grid-cols-2 gap-y-3 gap-x-4 mb-5">
+        {[1, 2, 3, 4].map((i) => (
+          <div key={`info-skel-${i}`} className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-lg bg-muted flex-shrink-0" />
+            <div className="h-3 w-20 bg-muted rounded-lg" />
+          </div>
+        ))}
       </div>
-      <div className="flex items-center justify-between pt-3 border-t border-border">
-        <div className="h-3 w-24 bg-muted rounded" />
-        <div className="h-8 w-24 bg-muted rounded-lg" />
+
+      {/* Footer: timestamp + apply button */}
+      <div className="mt-auto pt-5 border-t border-gray-50 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-muted" />
+          <div className="h-2.5 w-16 bg-muted rounded" />
+        </div>
+        <div className="h-8 w-20 bg-foreground rounded-xl" />
       </div>
     </div>
   );

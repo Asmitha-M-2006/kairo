@@ -195,11 +195,51 @@ export default function ListingsPageClient() {
     return filteredAndSorted.slice(start, start + ITEMS_PER_PAGE);
   }, [filteredAndSorted, currentPage]);
 
+  // Build active filter chips for empty state
+  const activeFilters = useMemo(() => {
+    const chips: { label: string; onRemove: () => void }[] = [];
+
+    if (filters.keyword) {
+      chips.push({
+        label: `"${filters.keyword}"`,
+        onRemove: () => handleFilterChange({ ...filters, keyword: '' }),
+      });
+    }
+    if (filters.location !== 'All Locations') {
+      chips.push({
+        label: filters.location,
+        onRemove: () => handleFilterChange({ ...filters, location: 'All Locations' }),
+      });
+    }
+    if (filters.duration !== 'all') {
+      const durationLabel = filters.duration === '1-2' ? '1-2 months' : filters.duration === '3-4' ? '3-4 months' : filters.duration === '5-6' ? '5-6 months' : '6+ months';
+      chips.push({
+        label: durationLabel,
+        onRemove: () => handleFilterChange({ ...filters, duration: 'all' }),
+      });
+    }
+    if (filters.posted !== 'all') {
+      const postedLabel = filters.posted === '24h' ? 'Last 24h' : filters.posted === '7d' ? 'Last 7 days' : 'Last 30 days';
+      chips.push({
+        label: postedLabel,
+        onRemove: () => handleFilterChange({ ...filters, posted: 'all' }),
+      });
+    }
+    if (filters.titleCategory) {
+      chips.push({
+        label: filters.titleCategory,
+        onRemove: () => handleFilterChange({ ...filters, titleCategory: '' }),
+      });
+    }
+
+    return chips;
+  }, [filters, handleFilterChange]);
+
   return (
     <div className="relative">
       <Toaster position="top-center" richColors />
 
-      <div className="flex flex-col gap-12">
+      <div className="flex flex-col gap-16 md:gap-24">
         <FilterSidebar
           filters={filters}
           onFilterChange={handleFilterChange}
@@ -217,6 +257,7 @@ export default function ListingsPageClient() {
                 internships={paginatedInternships}
                 isLoading={isLoading}
                 onResetFilters={handleResetFilters}
+                activeFilters={activeFilters}
               />
 
               {!isLoading && totalPages > 1 && (

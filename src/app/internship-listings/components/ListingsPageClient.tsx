@@ -2,16 +2,14 @@
 
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import { Toaster, toast } from 'sonner';
-import FilterSidebar from './FilterSidebar';
-import SortAndResultsBar from './SortAndResultsBar';
-import InternshipList from './InternshipList';
-import ErrorBanner from './ErrorBanner';
-import type { FilterState } from './FilterSidebar';
-import type { SortOption } from './SortAndResultsBar';
+import FilterSidebar from '@/components/listings/FilterSidebar';
+import SortAndResultsBar from '@/components/listings/SortAndResultsBar';
+import InternshipList from '@/components/listings/InternshipList';
+import ErrorBanner from '@/components/listings/ErrorBanner';
+import type { FilterState } from '@/components/listings/FilterSidebar';
+import type { SortOption } from '@/components/listings/SortAndResultsBar';
 import type { Internship } from '@/lib/internshipData';
 import {
-  buildAvailableLocations,
-  buildAvailableSkills,
   fetchInternships,
   isDeadlineExpired,
   parseStipendValue,
@@ -132,6 +130,7 @@ export const DEFAULT_FILTERS: FilterState = {
   category: 'all',
   type: 'all',
   duration: 'all',
+  posted: 'all',
   titleCategory: '',
 };
 
@@ -140,7 +139,6 @@ export default function ListingsPageClient() {
   const [sortBy, setSortBy] = useState<SortOption>('newest');
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-  const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
   const [allInternships, setAllInternships] = useState<Internship[]>([]);
   const [bookmarkedIds, setBookmarkedIds] = useState<Set<string>>(new Set());
 
@@ -199,15 +197,7 @@ export default function ListingsPageClient() {
       }
 
       return next;
-    });
-  }, []);
-
-  const availableLocations = useMemo(
-    () => buildAvailableLocations(allInternships),
-    [allInternships]
-  );
-
-  const availableSkills = useMemo(() => buildAvailableSkills(allInternships), [allInternships]);
+    });  }, []);
 
   const filteredAndSorted = useMemo(() => {
     const filtered = filterInternships(allInternships, filters);
@@ -218,18 +208,16 @@ export default function ListingsPageClient() {
     <>
       <Toaster position="bottom-right" richColors closeButton />
 
-      <div className="flex gap-6 xl:gap-8 items-start">
+      <div className="flex flex-col gap-8">
         <FilterSidebar
           filters={filters}
           onFilterChange={handleFilterChange}
           totalResults={filteredAndSorted.length}
-          isMobileOpen={mobileFilterOpen}
-          onMobileClose={() => setMobileFilterOpen(false)}
-          availableLocations={availableLocations}
-          availableSkills={availableSkills}
+          availableLocations={[]}
+          availableSkills={[]}
         />
 
-        <main className="flex-1 min-w-0 space-y-5">
+        <div className="space-y-5">
           {hasError && (
             <ErrorBanner
               message="Failed to load internship listings from the API. Check your connection and try again."
@@ -242,7 +230,7 @@ export default function ListingsPageClient() {
               totalResults={filteredAndSorted.length}
               sortBy={sortBy}
               onSortChange={setSortBy}
-              onMobileFilterOpen={() => setMobileFilterOpen(true)}
+
             />
           )}
 
@@ -255,7 +243,7 @@ export default function ListingsPageClient() {
               onToggleBookmark={handleToggleBookmark}
             />
           )}
-        </main>
+        </div>
       </div>
     </>
   );
